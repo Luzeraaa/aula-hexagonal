@@ -2,6 +2,7 @@ package com.hexagonal.hexagonal.adapters.out
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.registerKotlinModule
+import com.hexagonal.hexagonal.adapters.out.client.AddressClient
 import com.hexagonal.hexagonal.applications.core.domain.Address
 import com.hexagonal.hexagonal.applications.ports.out.FindAddressByZipCodeOutputPort
 import org.springframework.stereotype.Component
@@ -9,7 +10,7 @@ import org.springframework.stereotype.Component
 @Component
 class FindAddressByZipCodeAdapter(
 
-    private val findAddressByZipCodeAdapter: FindAddressByZipCodeAdapter
+    private val addressClient: AddressClient
 
 ) : FindAddressByZipCodeOutputPort {
 
@@ -17,7 +18,7 @@ class FindAddressByZipCodeAdapter(
 
         val objectMapper = ObjectMapper().registerKotlinModule()
 
-        return objectMapper.convertValue(findAddressByZipCodeAdapter.find(zipCode), Address::class.java)
+        return objectMapper.convertValue(addressClient.find(zipCode), Address::class.java)
 
     }
 

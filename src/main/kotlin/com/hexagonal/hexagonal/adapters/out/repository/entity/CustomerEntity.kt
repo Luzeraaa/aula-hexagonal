@@ -1,6 +1,5 @@
 package com.hexagonal.hexagonal.adapters.out.repository.entity
 
-import com.hexagonal.hexagonal.applications.core.domain.Address
 import com.hexagonal.hexagonal.applications.core.domain.Customer
 import org.springframework.data.mongodb.core.mapping.Document
 import org.springframework.data.mongodb.core.mapping.MongoId
@@ -30,5 +29,6 @@ data class CustomerEntity(
 
     )
 
+    fun toCustomer() = Customer(id, name, address.toAddress(), cpf, isValidCpf)
 
 }
