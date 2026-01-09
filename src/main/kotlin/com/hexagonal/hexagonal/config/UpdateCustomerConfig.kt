@@ -3,6 +3,7 @@ package com.hexagonal.hexagonal.config
 import com.hexagonal.hexagonal.applications.core.usecase.UpdateCustomerUseCase
 import com.hexagonal.hexagonal.applications.ports.`in`.FindCustomerByIdInputPort
 import com.hexagonal.hexagonal.applications.ports.out.FindAddressByZipCodeOutputPort
+import com.hexagonal.hexagonal.applications.ports.out.SendCpfForValidationOutputPort
 import com.hexagonal.hexagonal.applications.ports.out.UpdateCustomerOutputPort
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
@@ -17,7 +18,14 @@ class UpdateCustomerConfig {
 
         findAddressByZipCodeOutputPort: FindAddressByZipCodeOutputPort,
 
-        updateCustomerOutputPort: UpdateCustomerOutputPort
-    ) = UpdateCustomerUseCase(findCustomerByIdInputPort, findAddressByZipCodeOutputPort, updateCustomerOutputPort)
+        updateCustomerOutputPort: UpdateCustomerOutputPort,
+
+        sendCpfForValidationOutputPort: SendCpfForValidationOutputPort
+    ) = UpdateCustomerUseCase(
+        findCustomerByIdInputPort,
+        findAddressByZipCodeOutputPort,
+        updateCustomerOutputPort,
+        sendCpfForValidationOutputPort
+    )
 
 }

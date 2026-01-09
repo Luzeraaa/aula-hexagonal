@@ -3,6 +3,7 @@ package com.hexagonal.hexagonal.config
 import com.hexagonal.hexagonal.applications.core.usecase.InsertCustomerUseCase
 import com.hexagonal.hexagonal.applications.ports.out.FindAddressByZipCodeOutputPort
 import com.hexagonal.hexagonal.applications.ports.out.InsertCustomerOutputPort
+import com.hexagonal.hexagonal.applications.ports.out.SendCpfForValidationOutputPort
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 
@@ -14,8 +15,10 @@ class InsertCustomerConfig {
 
         findAddressByZipCodeOutputPort: FindAddressByZipCodeOutputPort,
 
-        insertCustomerUseCase: InsertCustomerOutputPort
+        insertCustomerUseCase: InsertCustomerOutputPort,
 
-    ) = InsertCustomerUseCase(findAddressByZipCodeOutputPort, insertCustomerUseCase)
+        sendCpfForValidationOutputPort: SendCpfForValidationOutputPort
+
+    ) = InsertCustomerUseCase(findAddressByZipCodeOutputPort, insertCustomerUseCase, sendCpfForValidationOutputPort)
 
 }
